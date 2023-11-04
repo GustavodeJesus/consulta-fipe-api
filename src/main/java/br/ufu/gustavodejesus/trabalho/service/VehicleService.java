@@ -11,6 +11,7 @@ import br.ufu.gustavodejesus.trabalho.model.mapper.IVehicleMapper;
 import br.ufu.gustavodejesus.trabalho.model.mapper.IYearMapper;
 import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicle;
 import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicleMaker;
+import br.ufu.gustavodejesus.trabalho.pattern.observer.Subject;
 import br.ufu.gustavodejesus.trabalho.pattern.proxy.IBrandDataSource;
 import br.ufu.gustavodejesus.trabalho.pattern.singleton.VehicleMakerSingleton;
 import java.util.List;
@@ -24,6 +25,7 @@ public class VehicleService implements IVehicleService {
     private final IVehicleMapper vehicleMapper;
     private final FipeApiClient fipeApiClient;
     private final IBrandDataSource dataSource;
+    private final Subject vehicleViewedSubject;
 
     public VehicleService(
             IBrandMapper brandMapper,
@@ -31,13 +33,15 @@ public class VehicleService implements IVehicleService {
             IYearMapper yearMapper,
             IVehicleMapper vehicleMapper,
             FipeApiClient fipeApiClient,
-            IBrandDataSource dataSource) {
+            IBrandDataSource dataSource,
+            Subject vehicleViewedSubject) {
         this.brandMapper = brandMapper;
         this.modelMapper = modelMapper;
         this.yearMapper = yearMapper;
         this.vehicleMapper = vehicleMapper;
         this.fipeApiClient = fipeApiClient;
         this.dataSource = dataSource;
+        this.vehicleViewedSubject = vehicleViewedSubject;
     }
 
     @Override
@@ -84,6 +88,11 @@ public class VehicleService implements IVehicleService {
         );
 
         IVehicleMaker instance = VehicleMakerSingleton.getInstance(fipeVehicle.getVehicleType());
-        return instance.makeVehicle(fipeVehicle);
+        IVehicle vehicle = instance.makeVehicle(fipeVehicle);
+        if (vehicle != null) {
+            vehicleViewedSubject.setVehicle(vehicle);
+        }
+
+        return vehicle;
     }
 }
