@@ -26,4 +26,6 @@ public interface IVehicleService {
             int modelId,
             String modelYear
     );
+
+    List<IVehicle> getVehiclesViewed();
 }

@@ -14,6 +14,7 @@ import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicleMaker;
 import br.ufu.gustavodejesus.trabalho.pattern.observer.Subject;
 import br.ufu.gustavodejesus.trabalho.pattern.proxy.IBrandDataSource;
 import br.ufu.gustavodejesus.trabalho.pattern.singleton.VehicleMakerSingleton;
+import br.ufu.gustavodejesus.trabalho.pattern.singleton.VehiclesViewed;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -94,5 +95,10 @@ public class VehicleService implements IVehicleService {
         }
 
         return vehicle;
+    }
+
+    @Override
+    public List<IVehicle> getVehiclesViewed() {
+        return VehiclesViewed.getInstance().getVehicles();
     }
 }

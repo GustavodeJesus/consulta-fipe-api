@@ -53,4 +53,9 @@ public class VehicleController {
     ) {
         return vehicleService.getVehicleByTypeAndBrandAndModelAndYear(vehicleType, brandId, modelId, modelYear);
     }
+
+    @GetMapping("/vehicles-viewed")
+    public List<IVehicle> getVehiclesViewed() {
+        return vehicleService.getVehiclesViewed();
+    }
 }
