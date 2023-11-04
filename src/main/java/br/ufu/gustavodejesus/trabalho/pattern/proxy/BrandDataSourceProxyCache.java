@@ -24,7 +24,7 @@ public class BrandDataSourceProxyCache implements IBrandDataSource {
     @Override
     public List<BrandResponse> getBrands(String vehicleType) {
 
-        if (brandsSavedInCache.isEmpty() && !vehicleType.equals(vehicleTypeSavedInCache)) {
+        if (brandsSavedInCache.isEmpty() || !vehicleType.equals(vehicleTypeSavedInCache)) {
             brandsSavedInCache = dataSource.getBrands(vehicleType);
             vehicleTypeSavedInCache = vehicleType;
             LOGGER.info("Requested api for vehicle type {}", vehicleTypeSavedInCache);
