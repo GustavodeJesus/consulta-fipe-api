@@ -22,7 +22,8 @@ public class VehicleController {
     }
 
     @GetMapping("/{vehicleType}/brands")
-    public List<Brand> getBrandsByVehicleType(@PathVariable("vehicleType") String vehicleType) {
+    public List<Brand> getBrandsByVehicleType(
+            @PathVariable("vehicleType") String vehicleType) {
         return vehicleService.getBrands(vehicleType);
     }
 

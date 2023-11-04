@@ -16,19 +16,23 @@ public class VehicleMakerSingleton {
 
     public static IVehicleMaker getInstance(int vehicleType) {
         return switch (vehicleType) {
-            case 1 -> {
+            case CAR -> {
                 if (carMaker == null) carMaker = new CarMaker();
                 yield carMaker;
             }
-            case 2 -> {
+            case MOTORCYCLE -> {
                 if (motorcycleMaker == null) motorcycleMaker = new MotorcycleMaker();
                 yield motorcycleMaker;
             }
-            case 3 -> {
+            case TRUCK -> {
                 if (truckMaker == null) truckMaker = new TruckMaker();
                 yield truckMaker;
             }
             default -> throw new IllegalArgumentException("VehicleType not mapped");
         };
     }
+
+    public static final int CAR = 1;
+    public static final int MOTORCYCLE = 2;
+    public static final int TRUCK = 3;
 }
