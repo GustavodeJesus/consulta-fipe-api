@@ -90,6 +90,7 @@ public class VehicleService implements IVehicleService {
 
         IVehicleMaker instance = VehicleMakerSingleton.getInstance(fipeVehicle.getVehicleType());
         IVehicle vehicle = instance.makeVehicle(fipeVehicle);
+
         if (vehicle != null) {
             vehicleViewedSubject.setVehicle(vehicle);
         }
