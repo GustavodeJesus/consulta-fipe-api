@@ -11,6 +11,7 @@ import br.ufu.gustavodejesus.trabalho.model.mapper.IVehicleMapper;
 import br.ufu.gustavodejesus.trabalho.model.mapper.IYearMapper;
 import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicle;
 import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicleMaker;
+import br.ufu.gustavodejesus.trabalho.pattern.proxy.IBrandDataSource;
 import br.ufu.gustavodejesus.trabalho.pattern.singleton.VehicleMakerSingleton;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -20,26 +21,28 @@ public class VehicleService implements IVehicleService {
     private final IBrandMapper brandMapper;
     private final IModelMapper modelMapper;
     private final IYearMapper yearMapper;
-
     private final IVehicleMapper vehicleMapper;
     private final FipeApiClient fipeApiClient;
+    private final IBrandDataSource dataSource;
 
     public VehicleService(
             IBrandMapper brandMapper,
             IModelMapper modelMapper,
             IYearMapper yearMapper,
             IVehicleMapper vehicleMapper,
-            FipeApiClient fipeApiClient) {
+            FipeApiClient fipeApiClient,
+            IBrandDataSource dataSource) {
         this.brandMapper = brandMapper;
         this.modelMapper = modelMapper;
         this.yearMapper = yearMapper;
         this.vehicleMapper = vehicleMapper;
         this.fipeApiClient = fipeApiClient;
+        this.dataSource = dataSource;
     }
 
     @Override
     public List<Brand> getBrands(String vehicleType) {
-        return fipeApiClient
+        return dataSource
                 .getBrands(vehicleType)
                 .stream()
                 .map(brandMapper::fromResponse)
