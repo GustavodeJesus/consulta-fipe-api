@@ -1,33 +1,19 @@
-# consulta-fipe-api
+# Consulta Fipe API
 
-    public interface ITruckMaker extends IVehicleMaker {
-        void printLog();
-    }
+API de Consulta veículo e Fipe
 
+## Pré-requisitos
 
-    public class TruckMaker implements ITruckMaker {
+Antes de começar, certifique-se de ter os seguintes requisitos instalados em sua máquina:
 
-        private static final Logger LOGGER = LoggerFactory.getLogger(TruckMaker.class);
+- Java JDK 8 ou superior
+- Gradle
+- Um IDE de sua escolha (como o IntelliJ IDEA ou Eclipse) para desenvolvimento
 
+### Para compilar
 
-        @Override
-        public IVehicle makeVehicle(FipeVehicle vehicle) {
-            return new Truck(
-                    vehicle.getValue(),
-                    vehicle.getBrand(),
-                    vehicle.getModel(),
-                    vehicle.getModelYear(),
-                    vehicle.getFuelType(),
-                    vehicle.getFipeCode(),
-                    vehicle.getReferenceMonth(),
-                    vehicle.getFuelTypeAbbreviation()
-            );
-        }
-    
-        @Override
-        public void printLog() {
-            LOGGER.info(TruckMaker.class.getSimpleName());
-        }
-    }
+    ./gradlew build
 
+### Para executar
 
+    ./gradlew bootRun
