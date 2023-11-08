@@ -62,6 +62,6 @@ public class VehicleController {
 
     @PostMapping("/clear-vehicles-viewed")
     public void clearVehiclesViewed() {
-        vehicleService.getVehiclesViewed();
+        vehicleService.clearVehiclesViewed();
     }
 }

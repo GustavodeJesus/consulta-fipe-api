@@ -28,4 +28,8 @@ public class VehiclesViewed {
         return vehicles;
     }
 
+    public void clearVehicles() {
+        this.vehicles.clear();
+    }
+
 }
