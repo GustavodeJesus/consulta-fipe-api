@@ -28,4 +28,6 @@ public interface IVehicleService {
     );
 
     List<IVehicle> getVehiclesViewed();
+
+    void clearVehiclesViewed();
 }

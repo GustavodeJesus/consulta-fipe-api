@@ -102,4 +102,9 @@ public class VehicleService implements IVehicleService {
     public List<IVehicle> getVehiclesViewed() {
         return VehiclesViewed.getInstance().getVehicles();
     }
+
+    @Override
+    public void clearVehiclesViewed() {
+        VehiclesViewed.getInstance().getVehicles().clear();
+    }
 }

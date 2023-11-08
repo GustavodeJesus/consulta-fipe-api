@@ -1,6 +1,8 @@
 package br.ufu.gustavodejesus.trabalho.model;
 
-public class FipeVehicle {
+import br.ufu.gustavodejesus.trabalho.pattern.builder.FipeVehicleBuilder;
+
+public class FipeVehicle extends FipeVehicleBuilder {
     private int vehicleType;
     private String value;
     private String brand;

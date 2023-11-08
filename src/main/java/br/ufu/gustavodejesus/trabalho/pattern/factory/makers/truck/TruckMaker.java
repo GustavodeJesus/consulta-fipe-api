@@ -2,9 +2,13 @@ package br.ufu.gustavodejesus.trabalho.pattern.factory.makers.truck;
 
 import br.ufu.gustavodejesus.trabalho.model.FipeVehicle;
 import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicle;
-import br.ufu.gustavodejesus.trabalho.pattern.factory.IVehicleMaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class TruckMaker implements IVehicleMaker {
+public class TruckMaker implements ITruckMaker {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TruckMaker.class);
+
 
     @Override
     public IVehicle makeVehicle(FipeVehicle vehicle) {
@@ -18,5 +22,10 @@ public class TruckMaker implements IVehicleMaker {
                 vehicle.getReferenceMonth(),
                 vehicle.getFuelTypeAbbreviation()
         );
+    }
+
+    @Override
+    public void printLog() {
+        LOGGER.info(TruckMaker.class.getSimpleName());
     }
 }
